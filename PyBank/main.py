@@ -22,11 +22,6 @@ with open(csvbudget,newline = '') as financialInfo:
 
         revenue.append(int(row[1]))
         date.append(row[0])
-
-    print("Financial Analysis")
-    print('-----------------------------')
-    print('Total Months:', len(date))
-    print('Total Revenue:', sum(revenue))
        
     
     for i in range(1,len(revenue)):
@@ -40,7 +35,17 @@ with open(csvbudget,newline = '') as financialInfo:
     maxChangeDate = str(date[change.index(max(change))])
     minChangeDate = str(date[change.index(min(change))])
     
-    print('Average Revenue Change: $', round(avgChange))
-    print(f'Greatest Increase in Revenue:, maxChangeDate,($,{maxChange})')
-    print(f'Greatest Decrease in Revenue:, minChangeDate,($, {minChange})')
+    output=(f'Financial Analysis\n'
+    f'-----------------------------\n'
+    f'Total Months:{len(date)}\n' 
+    f'Total Revenue: $ {sum(revenue)}\n'
+    f'Average Revenue Change: $ {round(avgChange)}\n'
+    f'Greatest Increase in Revenue:, maxChangeDate,($,{maxChange})\n'
+    f'Greatest Decrease in Revenue:, minChangeDate,($, {minChange})')
+
+    print(output)
+
+    with open(budgetoutput,"w+") as textf:
+        textf.write(output)
+        
 
